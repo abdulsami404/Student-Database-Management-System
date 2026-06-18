@@ -8,7 +8,10 @@ from sqlalchemy.orm import Session
 
 router = APIRouter(prefix="/students", tags=["Students"])
 
-
+@router.get("/", response_model=list[studentResponse])
+def get_students(db: Session = Depends(get_db)):
+    students = db.query(studentDB).all()
+    return students
 @router.get("/{student_id}", response_model=studentResponse)
 def get_student(student_id:int,db:Session=Depends(get_db)):
     student = db.query(studentDB).filter(studentDB.studentID == student_id).first()

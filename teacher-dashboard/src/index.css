@@ -1,3 +1,20 @@
 /* navbar navbar-expand-lg navbar-dark bg-dark{
     background-color: hsl(200,100%, 50%);
 } */
+
+.btn.btn-outline-success {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    
+}
+/* .btn.btn-outline-danger {
+    position: fixed;
+    
+    
+} */
+.card-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

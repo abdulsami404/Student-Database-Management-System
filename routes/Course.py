@@ -8,6 +8,12 @@ from sqlalchemy.orm import Session
 
 router = APIRouter(prefix="/courses", tags=["Courses"])
 
+
+@router.get("/", response_model=list[CourseResponse])
+def get_all_courses(db: Session = Depends(get_db)):
+    courses = db.query(Course).all()
+    return courses
+
 @router.get("/{course_id}", response_model=CourseResponse)
 def get_course(course_id:int,db:Session = Depends(get_db)):
     course = db.query(Course).filter(Course.courseID == course_id).first()

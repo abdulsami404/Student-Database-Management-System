@@ -10,6 +10,11 @@ from sqlalchemy.orm import Session
 
 router = APIRouter(prefix="/grades", tags=["Grades"])
 
+@router.get("/", response_model=list[GradeResponse])
+def get_all_grades(db: Session = Depends(get_db)):
+    grades = db.query(gradeDB).all()
+    return grades
+
 @router.get("/{grade_id}", response_model=GradeResponse)
 def get_grade(grade_id:int,db:Session = Depends(get_db)):
     grade = db.query(gradeDB).filter(gradeDB.gradeID == grade_id).first()
